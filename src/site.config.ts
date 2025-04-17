@@ -22,26 +22,26 @@ export const siteConfig: SiteConfig = {
 	// Used to construct the meta title property found in src/components/BaseHead.astro L:11, and webmanifest name found in astro.config.ts L:42
 	title: "Astro Theme Cactus",
 	// ! Please remember to replace the following site property with your own domain, used in astro.config.ts
-	url: "https://astro-cactus.chriswilliams.dev/",
+	url: "https://blog.108199.xyz/",
 };
 
 // Used to generate links in both the Header & Footer.
 export const menuLinks: { path: string; title: string }[] = [
 	{
 		path: "/",
-		title: "Home",
+		title: "主页",
 	},
 	{
 		path: "/about/",
-		title: "About",
+		title: "关于",
 	},
 	{
 		path: "/posts/",
-		title: "Blog",
+		title: "博客",
 	},
 	{
 		path: "/notes/",
-		title: "Notes",
+		title: "笔记",
 	},
 ];
 
