@@ -18,9 +18,10 @@ const likesToShow = likes
 {
 	!!likes.length && (
 		<div>
+			{/* 翻译了点赞数量的描述文本 */}
 			<p class="text-accent-2 mb-0">
-				<strong>{likes.length}</strong>
-				{likes.length > 1 ? " People" : " Person"} liked this
+				<strong>{likes.length}</strong> 人喜欢了这个
+				{/* 或者可以用 "人点赞了" */}
 			</p>
 			{!!likesToShow.length && (
 				<ul class="flex list-none flex-wrap overflow-hidden ps-2" role="list">
@@ -31,10 +32,12 @@ const likesToShow = likes
 								href={like.author?.url}
 								rel="noreferrer"
 								target="_blank"
+								// title 使用的是外部数据 like.author.name，此处不翻译
 								title={like.author?.name}
 							>
 								<span class="p-author h-card">
 									<Image
+										// alt 使用的是外部数据 like.author.name，此处不翻译
 										alt={like.author!.name}
 										class="u-photo my-0 inline-block h-12 w-12"
 										height={48}
