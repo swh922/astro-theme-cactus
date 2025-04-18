@@ -14,11 +14,19 @@ const { as: Tag = "div", post, withDesc = false } = Astro.props;
 <FormattedDate
 	class="min-w-30 font-semibold text-gray-600 dark:text-gray-400"
 	date={post.data.publishDate}
+	// 日期格式 (例如月份) 的本地化取决于 FormattedDate.astro 组件
 />
 <Tag>
-	{post.data.draft && <span class="text-red-500">(Draft) </span>}
+	{/* 如果是草稿，显示中文标记 */}
+	{post.data.draft && <span class="text-red-500">（草稿） </span>}
 	<a class="cactus-link" data-astro-prefetch href={`/posts/${post.id}/`}>
+		{/* 文章标题需要在 Markdown 文件 (.md/.mdx) 的 frontmatter 中翻译 */}
 		{post.data.title}
 	</a>
 </Tag>
-{withDesc && <q class="line-clamp-3 italic">{post.data.description}</q>}
+{/* 如果 withDesc 为 true，显示文章描述 */}
+{withDesc && <q class="line-clamp-3 italic">
+  {/* 文章描述需要在 Markdown 文件 (.md/.mdx) 的 frontmatter 中翻译 */}
+  {post.data.description}
+  </q>
+}
