@@ -1,7 +1,7 @@
 ---
 import { generateToc } from "@/utils/generateToc";
 import type { MarkdownHeading } from "astro";
-import TOCHeading from "./TOCHeading.astro";
+import TOCHeading from "./TOCHeading.astro"; // 我们很可能也需要检查这个文件
 
 interface Props {
 	headings: MarkdownHeading[];
@@ -9,13 +9,17 @@ interface Props {
 
 const { headings } = Astro.props;
 
+// 假设 generateToc 函数本身不引入需要本地化的字符串
 const toc = generateToc(headings);
 ---
 
 <details open class="lg:sticky lg:top-12 lg:order-2 lg:-me-32 lg:basis-64">
-	<summary class="title hover:marker:text-accent cursor-pointer text-lg">Table of Contents</summary>
+	{/* 翻译了 summary 的文本 */}
+	<summary class="title hover:marker:text-accent cursor-pointer text-lg">目录</summary>
 	<nav class="ms-4 lg:w-full">
 		<ol class="mt-4">
+			{/* 使用 TOCHeading.astro 渲染每个标题 */}
+			{/* 标题本身的文本来自 Markdown 内容 */}
 			{toc.map((heading) => <TOCHeading heading={heading} />)}
 		</ol>
 	</nav>
