@@ -19,8 +19,9 @@ const comments = mentions.filter(
 {
 	!!comments.length && (
 		<div>
+			{/* 翻译了提及数量的文本，并简化了复数处理 */}
 			<p class="text-accent-2 mb-0">
-				<strong>{comments.length}</strong> Mention{comments.length > 1 ? "s" : ""}
+				<strong>{comments.length}</strong> 条提及
 			</p>
 			<ul class="divide-global-text/20 mt-0 divide-y ps-0" role="list">
 				{comments.map((mention) => (
@@ -32,9 +33,11 @@ const comments = mentions.filter(
 									href={mention.author.url}
 									rel="noreferrer"
 									target="_blank"
+									// title 使用的是外部数据 mention.author.name，此处不翻译
 									title={mention.author.name}
 								>
 									<Image
+										// alt 使用的是外部数据 mention.author.name，此处不翻译
 										alt={mention.author?.name}
 										class="u-photo my-0 h-12 w-12"
 										height={48}
@@ -44,6 +47,7 @@ const comments = mentions.filter(
 								</a>
 							) : (
 								<Image
+									// alt 使用的是外部数据 mention.author.name，此处不翻译
 									alt={mention.author?.name}
 									class="u-photo my-0 h-12 w-12 rounded-full"
 									height={48}
@@ -55,6 +59,7 @@ const comments = mentions.filter(
 						<div class="flex-auto">
 							<div class="p-author h-card flex items-center justify-between gap-x-2">
 								<p class="p-name text-accent-2 my-0 line-clamp-1 font-semibold">
+									{/* 作者名字来自外部数据，此处不翻译 */}
 									{mention.author?.name}
 								</p>
 								<a
@@ -64,8 +69,9 @@ const comments = mentions.filter(
 									rel="noreferrer"
 									target="_blank"
 								>
+									{/* 翻译了隐藏的无障碍描述文本 */}
 									<span class="hidden" id="cmt-source">
-										Visit the source of this webmention
+										查看原始提及来源
 									</span>
 									<Icon
 										aria-hidden="true"
@@ -76,6 +82,7 @@ const comments = mentions.filter(
 								</a>
 							</div>
 							<p class="comment-content mt-1 mb-0 break-words [word-break:break-word]">
+								{/* 评论内容来自外部数据，此处不翻译 */}
 								{mention.content?.text}
 							</p>
 						</div>
