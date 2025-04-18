@@ -22,6 +22,7 @@ const dateTimeOptions: Intl.DateTimeFormatOptions = {
 	data.coverImage && (
 		<div class="mb-6 aspect-video">
 			<Image
+				// 图片的 alt 文本需要在 Markdown 文件 (`.md`) 的 frontmatter 中翻译
 				alt={data.coverImage.alt}
 				class="object-cover"
 				fetchpriority="high"
@@ -31,19 +32,24 @@ const dateTimeOptions: Intl.DateTimeFormatOptions = {
 		</div>
 	)
 }
-{data.draft ? <span class="text-base text-red-500">(Draft)</span> : null}
+{/* 如果是草稿，显示中文提示 */}
+{data.draft ? <span class="text-base text-red-500">（草稿）</span> : null}
 <h1 class="title">
+	{/* 文章标题需要在 Markdown 文件 (`.md`) 的 frontmatter 中翻译 */}
 	{data.title}
 </h1>
 <div class="flex flex-wrap items-center gap-x-3 gap-y-2">
 	<p class="font-semibold">
+		{/* FormattedDate 组件需要能正确处理中文日期显示 */}
 		<FormattedDate date={data.publishDate} dateTimeOptions={dateTimeOptions} /> /{" "}
+		{/* 阅读时间字符串可能需要在生成它的地方进行翻译 */}
 		{readingTime}
 	</p>
 	{
 		data.updatedDate && (
 			<span class="bg-quote/5 text-quote rounded-lg px-2 py-1">
-				Updated:
+				{/* 更新日期提示 */}
+				更新：
 				<FormattedDate class="ms-1" date={data.updatedDate} dateTimeOptions={dateTimeOptions} />
 			</span>
 		)
@@ -73,7 +79,10 @@ const dateTimeOptions: Intl.DateTimeFormatOptions = {
 				<>
 					{/* prettier-ignore */}
 					<span class="contents">
-						<a class="cactus-link inline-block before:content-['#']" data-pagefind-filter={`tag:${tag}`} href={`/tags/${tag}/`}><span class="sr-only">View more blogs with the tag&nbsp;</span>{tag}
+						{/* 标签本身需要在 Markdown 文件 (`.md`) 的 frontmatter 中翻译 */}
+						<a class="cactus-link inline-block before:content-['#']" data-pagefind-filter={`tag:${tag}`} href={`/tags/${tag}/`}>
+              {/* 屏幕阅读器文本 */}
+              <span class="sr-only">查看更多关于此标签的博客&nbsp;</span>{tag}
 						</a>{i < data.tags.length - 1 && ", "}
 					</span>
 				</>
