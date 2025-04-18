@@ -1,23 +1,28 @@
 ---
 import { getWebmentionsForUrl } from "@/utils/webmentions";
-import Comments from "./Comments.astro";
-import Likes from "./Likes.astro";
+import Comments from "./Comments.astro"; // 假设 Comments.astro 已翻译
+import Likes from "./Likes.astro";       // 假设 Likes.astro 已翻译
 
 const url = new URL(Astro.url.pathname, Astro.site);
 
 const webMentions = await getWebmentionsForUrl(`${url}`);
 
-// Return if no webmentions
+// 如果没有 webmentions 则不渲染
 if (!webMentions.length) return;
 ---
 
 <hr class="border-solid" />
-<h2 class="mb-8 before:hidden">Webmentions for this post</h2>
+{/* 翻译了标题 */}
+<h2 class="mb-8 before:hidden">本文收到的 Webmentions</h2>
+{/* 或者更通俗的: "评论与互动" / "提及与互动" */}
 <div class="space-y-10">
 	<Likes mentions={webMentions} />
 	<Comments mentions={webMentions} />
 </div>
 <p class="mt-8">
-	Responses powered by{" "}
-	<a href="https://webmention.io" rel="noreferrer" target="_blank">Webmentions</a>
+	{/* 翻译了底部说明 */}
+	互动功能由{" "}
+	<a href="https://webmention.io" rel="noreferrer" target="_blank">Webmention.io</a> 提供支持
+	{/* 或者: "响应由 <a ...>Webmention.io</a> 驱动" */}
+	{/* 或者: "互动来源：<a ...>Webmention.io</a>" */}
 </p>
