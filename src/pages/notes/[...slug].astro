@@ -10,7 +10,7 @@ export const getStaticPaths = (async () => {
 	const allNotes = await getCollection("note");
 	return allNotes.map((note) => ({
 		params: { slug: note.id },
-		props: { note },
+		props: { note }, // Pass the specific note object as props
 	}));
 }) satisfies GetStaticPaths;
 
@@ -18,14 +18,21 @@ export type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { note } = Astro.props;
 
+// Note: title 和 description 的翻译需要在对应的 .md/.mdx 文件中完成
 const meta = {
 	description:
 		note.data.description ||
-		`Read about my note posted on: ${note.data.publishDate.toLocaleDateString()}`,
+        // 后备描述文本已翻译
+		`阅读我发布于 ${note.data.publishDate.toLocaleDateString('zh-CN')} 的笔记`, // 'zh-CN' added for explicit locale formatting example
 	title: note.data.title,
 };
 ---
 
 <PageLayout meta={meta}>
+    {/*
+      Note 组件将渲染笔记的完整内容。
+      笔记的标题和正文需要在其源 .md/.mdx 文件中翻译。
+      Note.astro 组件内部的任何静态文本也需要在该组件文件中翻译。
+    */}
 	<Note as="h1" note={note} />
 </PageLayout>
