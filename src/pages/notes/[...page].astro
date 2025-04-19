@@ -15,26 +15,28 @@ export const getStaticPaths = (async ({ paginate }) => {
 
 interface Props {
 	page: Page<CollectionEntry<"note">>;
-	uniqueTags: string[];
+	uniqueTags: string[]; // Note: uniqueTags is defined in Props but not used in this specific file's logic/template.
 }
 
 const { page } = Astro.props;
 
+// 元数据已翻译
 const meta = {
-	description: "Read my collection of notes",
-	title: "Notes",
+	description: "阅读我的笔记合集",
+	title: "笔记",
 };
 
+// 分页文本已翻译
 const paginationProps = {
 	...(page.url.prev && {
 		prevUrl: {
-			text: "← Previous Page",
+			text: "← 上一页",
 			url: page.url.prev,
 		},
 	}),
 	...(page.url.next && {
 		nextUrl: {
-			text: "Next Page →",
+			text: "下一页 →",
 			url: page.url.next,
 		},
 	}),
@@ -44,8 +46,10 @@ const paginationProps = {
 <PageLayout meta={meta}>
 	<section>
 		<h1 class="title mb-6 flex items-center gap-3">
-			Notes <a class="text-accent" href="/notes/rss.xml" target="_blank">
-				<span class="sr-only">RSS feed</span>
+            {/* H1 已翻译 */}
+			笔记 <a class="text-accent" href="/notes/rss.xml" target="_blank">
+                {/* SR 文本已翻译 */}
+				<span class="sr-only">RSS 订阅源</span>
 				<Icon aria-hidden="true" class="h-6 w-6" focusable="false" name="mdi:rss" />
 			</a>
 		</h1>
@@ -53,11 +57,13 @@ const paginationProps = {
 			{
 				page.data.map((note) => (
 					<li class="">
+                        {/* Note 组件本身的内容需在其源文件或组件内部翻译 */}
 						<Note note={note} as="h2" isPreview />
 					</li>
 				))
 			}
 		</ul>
+        {/* 分页组件使用已翻译的 props */}
 		<Pagination {...paginationProps} />
 	</section>
 </PageLayout>
