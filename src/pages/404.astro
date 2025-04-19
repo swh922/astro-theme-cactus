@@ -1,13 +1,18 @@
 ---
 import PageLayout from "@/layouts/Base.astro";
 
+// 元数据已翻译
 const meta = {
-	description: "Oops! It looks like this page is lost in space!",
-	title: "Oops! You found a missing page!",
+	description: "哎呀！这个页面好像迷失在太空中了！", // 或者更简洁："哎呀！页面未找到。"
+	title: "哎呀！您找到了一个不存在的页面！", // 或者："页面未找到"
 };
 ---
 
 <PageLayout meta={meta}>
-	<h1 class="title mb-6">404 | Oops something went wrong</h1>
-	<p class="mb-8">Please use the navigation to find your way back</p>
+	{/* 标题已翻译，保留 "404" */}
+	<h1 class="title mb-6">404 | 哎呀，出错了</h1> 
+	{/* 或者：<h1 class="title mb-6">404 | 页面未找到</h1> */}
+	
+	{/* 指示文本已翻译 */}
+	<p class="mb-8">请使用导航菜单返回。</p>
 </PageLayout>
