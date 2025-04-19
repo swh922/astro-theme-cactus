@@ -28,21 +28,23 @@ interface Props {
 const { page } = Astro.props;
 const { tag } = Astro.params;
 
+// 元数据已翻译
 const meta = {
-	description: `View all posts with the tag - ${tag}`,
-	title: `Tag: ${tag}`,
+	description: `查看带有标签 “${tag}” 的所有文章`,
+	title: `标签: ${tag}`,
 };
 
+// 分页文本已翻译
 const paginationProps = {
 	...(page.url.prev && {
 		prevUrl: {
-			text: "← Previous Tags",
+			text: "← 上一页标签",
 			url: page.url.prev,
 		},
 	}),
 	...(page.url.next && {
 		nextUrl: {
-			text: "Next Tags →",
+			text: "下一页标签 →",
 			url: page.url.next,
 		},
 	}),
@@ -51,22 +53,31 @@ const paginationProps = {
 
 <PageLayout meta={meta}>
 	<div class="mb-6 flex items-center">
-		<h1 class="sr-only">Posts with the tag {tag}</h1>
-		<a class="title text-accent" href="/tags/"><span class="sr-only">All {" "}</span>Tags</a>
+		{/* 屏幕阅读器 H1 已翻译 */}
+		<h1 class="sr-only">带有标签 {tag} 的文章</h1>
+		<a class="title text-accent" href="/tags/">
+            {/* 屏幕阅读器链接前缀已翻译 */}
+            <span class="sr-only">所有{" "}</span>
+            {/* 可见链接文本已翻译 */}
+            标签
+        </a>
 		<span aria-hidden="true" class="ms-2 me-3 text-xl">→</span>
 		<span aria-hidden="true" class="text-xl">#{tag}</span>
 	</div>
 	<section aria-labelledby={`tags-${tag}`}>
-		<h2 id={`tags-${tag}`} class="sr-only">Post List</h2>
+		{/* 屏幕阅读器 H2 已翻译 */}
+		<h2 id={`tags-${tag}`} class="sr-only">文章列表</h2>
 		<ul class="space-y-6">
 			{
 				page.data.map((p) => (
 					<li class="grid gap-2 sm:grid-cols-[auto_1fr]">
+                        {/* PostPreview 组件内部的文本需要在 PostPreview.astro 或文章源文件中翻译 */}
 						<PostPreview as="h2" post={p} />
 					</li>
 				))
 			}
 		</ul>
+		{/* 分页组件使用已翻译的 props */}
 		<Pagination {...paginationProps} />
 	</section>
 </PageLayout>
